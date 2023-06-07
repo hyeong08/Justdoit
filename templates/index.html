@@ -20,6 +20,9 @@
         * {
             font-family: 'Monomaniac One', sans-serif;
         }
+        button{
+            margin-left: 5px;
+        }
 
         .top {
             width: 100%;
@@ -98,6 +101,7 @@
 
         .todo_list_failed > li{
             margin-bottom: 5px;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -154,19 +158,62 @@
                     <button onclick="success_todo()" type="button" id="success_button"
                         class="btn btn-outline-primary">삭제</button>
                 </li>
+                <li class ="todo_list_li" type="none">
+                    <h4>호주에서</h4>
+                    <!--작업 완료시 => 완료된 작업으로 넘어가기-->
+                    <button onclick="success_todo()" type="button" id="success_button"
+                        class="btn btn-outline-primary">완료</button>
+                    <!--작업 수정시 => prompt로 받아서 수정해주기-->
+                    <button onclick="success_todo()" type="button" id="change_button"
+                        class="btn btn-outline-primary">수정</button>
+                    <!--작업 삭제시 => 작업 삭제-->
+                    <button onclick="success_todo()" type="button" id="success_button"
+                        class="btn btn-outline-primary">삭제</button>
+                </li>
+                <li class ="todo_list_li" type="none">
+                    <h4>호주에서</h4>
+                    <!--작업 완료시 => 완료된 작업으로 넘어가기-->
+                    <button onclick="success_todo()" type="button" id="success_button"
+                        class="btn btn-outline-primary">완료</button>
+                    <!--작업 수정시 => prompt로 받아서 수정해주기-->
+                    <button onclick="success_todo()" type="button" id="change_button"
+                        class="btn btn-outline-primary">수정</button>
+                    <!--작업 삭제시 => 작업 삭제-->
+                    <button onclick="success_todo()" type="button" id="success_button"
+                        class="btn btn-outline-primary">삭제</button>
+                </li>
             </div>
             <hr>
             <div class="todo_list_failed">
-                <li type="none">
+                <li type="none" class="failed_list_li">
                     <h5>완료하지 못한 작업</h5>
                     <button onclick="failed_todo()" type="button" id="button_todo_failed"
                         class="btn btn-outline-primary">미완료</button>
                 </li>
                 <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+                <li type="none" class="failed_list_li">
+                    <h5>완료하지 못한 작업</h5>
+                    <button onclick="failed_todo()" type="button" id="button_todo_failed"
+                        class="btn btn-outline-primary">미완료</button>
+                </li>
+                <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+                <li type="none" class="failed_list_li">
+                    <h5>완료하지 못한 작업</h5>
+                    <button onclick="failed_todo()" type="button" id="button_todo_failed"
+                        class="btn btn-outline-primary">미완료</button>
+                </li>
+                <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+
             </div>
         </div>
 
         <div class="todo_list_success">
+            <li class="success_list_li">
+                완료한 작업들
+            </li>
+            <li class="success_list_li">
+                완료한 작업들
+            </li>
             <li class="success_list_li">
                 완료한 작업들
             </li>
