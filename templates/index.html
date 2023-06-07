@@ -2,195 +2,196 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>TodoList</title>
-    <meta property="og:title" content="항해99_TodoList" />
-    <meta property="og:description" content="할일 목록" />
-    <meta property="og:image"
-        content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>TodoList</title>
+  <meta property="og:title" content="항해99_TodoList" />
+  <meta property="og:description" content="할일 목록" />
+  <meta property="og:image"
+    content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75" />
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
 
-        * {
-            font-family: 'Monomaniac One', sans-serif;
-        }
+    * {
+      font-family: 'Monomaniac One', sans-serif;
+    }
 
-        .top {
-            width: 100%;
-            height: 300px;
+    .top {
+      width: 100%;
+      height: 300px;
 
-            background-color: coral;
-            background-position: center 50%;
-            background-size: cover;
+      background-color: coral;
+      background-position: center 50%;
+      background-size: cover;
 
-            color: white;
-            font-size: 80px;
-            font-style: normal;
+      color: white;
+      font-size: 80px;
+      font-style: normal;
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .center {
-            width: 95%;
-            max-width: 1000px;
-            height: 1000px;
-            padding: 20px;
-            box-shadow: 0px 0px 10px 0px gray;
-            margin: 20px auto;
-        }
+    .center {
+      width: 95%;
+      max-width: 1000px;
+      height: 1000px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px 0px gray;
+      margin: 20px auto;
+    }
 
-        .mytodosave {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+    .mytodosave {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
 
-        .mytodosave>input {
-            width: 80%;
-        }
+    .mytodosave>input {
+      width: 80%;
+    }
 
-        .mytodosave>button {
-            width: 15%;
-        }
+    .mytodosave>button {
+      width: 15%;
+    }
 
-        .totalbox {
-            width: 100%;
-            height: 200px;
+    .totalbox {
+      width: 100%;
+      height: 200px;
 
-            border-radius: 10px;
+      border-radius: 10px;
 
-            text-align: center;
+      text-align: center;
 
-            padding: 30px 0px 0px 0px;
+      padding: 30px 0px 0px 0px;
 
-            /*중앙을 보여줘라*/
-            background-position: center;
-            /*사이즈에 맞게 보여줘라*/
-            background-size: cover;
-        }
+      /*중앙을 보여줘라*/
+      background-position: center;
+      /*사이즈에 맞게 보여줘라*/
+      background-size: cover;
+    }
 
-        .mybox{
-            padding: 5px 10px 5px 10px;
-            box-shadow: 0px 0px 5px 0px gray;
-            margin-right: 5%;
-            float: left;
-            width: 60%;
-        }
+    .mybox {
+      padding: 5px 10px 5px 10px;
+      box-shadow: 0px 0px 5px 0px gray;
+      margin-right: 5%;
+      float: left;
+      width: 60%;
+    }
 
-        .todolist{
-            padding: 5px 10px 5px 10px;
-            box-shadow: 0px 0px 5px 0px gray;
-            float: left;
-            width: 35%;
-        }
+    .todolist {
+      padding: 5px 10px 5px 10px;
+      box-shadow: 0px 0px 5px 0px gray;
+      float: left;
+      width: 35%;
+    }
 
-        .mybox>li {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
+    .mybox>li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .todolist>li{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .todolist>li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .mybox>li>h2 {
-            max-width: 75%;
-            font-size: 20px;
-            font-weight: 500;
-            margin-right: auto;
-            margin-bottom: 0px;
-        }
-        
-        .faile_todo>li>h4{
-            max-width: 75%;
-            font-size: 20px;
-            font-weight: 500;
-            margin-right: auto;
-        }
+    .mybox>li>h2 {
+      max-width: 75%;
+      font-size: 20px;
+      font-weight: 500;
+      margin-right: auto;
+      margin-bottom: 0px;
+    }
 
-        .faile_todo>li{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 5px;
-        }
+    .faile_todo>li>h4 {
+      max-width: 75%;
+      font-size: 20px;
+      font-weight: 500;
+      margin-right: auto;
+    }
 
-        .todolist>li>h2 {
-            max-width: 100%;
-            font-size: 20px;
-            margin-bottom: 0px;
-        }
-    </style>
+    .faile_todo>li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
 
-    <script>
+    .todolist>li>h2 {
+      max-width: 100%;
+      font-size: 20px;
+      margin-bottom: 0px;
+    }
+  </style>
 
-    </script>
+  <script>
+
+  </script>
 </head>
 
 <body>
-    <!-- 가장 상단 -->
-    <div class="top"><b>TO DO LIST</b></div>
+  <!-- 가장 상단 -->
+  <div class="top"><b>TO DO LIST</b></div>
 
-    <!-- 중간 TodoList 가장 큰 틀 -->
-    <div class="center">
+  <!-- 중간 TodoList 가장 큰 틀 -->
+  <div class="center">
 
-        <!--할일 저장-->
-        <div class="mytodosave">
-            <input id="bucket" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
-            <button onclick="save_todo()" type="button" class="btn btn-outline-primary">입력</button>
-        </div>
-
-        <!--진행중+완료한 목록-->
-        <div class="totalbox">
-            <!--진행중 목록-->
-            <div class="mybox" id="todo-list">
-                <li>
-                    <h2>호주에서 스카이다이빙 하기</h2>
-                    <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-                    <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
-                    <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
-                </li>
-
-                <br><br><br><br>
-
-                <div class="faile_todo">
-                    <!--미완료 목록   =>  li 와 div가 한 세트-->
-                    <li type="none">
-                        <h4>호주에서</h4>
-                        <button onclick="failed_todo()" type="button" id="falied_button" class="btn btn-outline-primary">미완료</button>
-                    </li>
-                    <div>
-                        <input id="failed_text" class="form-control" type="text" placeholder="미완료 사유" />
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!--완료한 목록-->
-            <div class="todolist">
-                <h4>완료한 작업</h4>
-                <li>
-                    <h2>호주에서 스카이다이빙 하기</h2>
-                </li>
-            </div>
-        </div>
+    <!--할일 저장-->
+    <div class="mytodosave">
+      <input id="bucket" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
+      <button onclick="save_todo()" type="button" class="btn btn-outline-primary">입력</button>
     </div>
+
+    <!--진행중+완료한 목록-->
+    <div class="totalbox">
+      <!--진행중 목록-->
+      <div class="mybox" id="todo-list">
+        <li>
+          <h2>호주에서 스카이다이빙 하기</h2>
+          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+          <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
+          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
+        </li>
+
+        <br><br><br><br>
+
+        <div class="faile_todo">
+          <!--미완료 목록   =>  li 와 div가 한 세트-->
+          <li type="none">
+            <h4>호주에서</h4>
+            <button onclick="failed_todo()" type="button" id="falied_button"
+              class="btn btn-outline-primary">미완료</button>
+          </li>
+          <div>
+            <input id="failed_text" class="form-control" type="text" placeholder="미완료 사유" />
+          </div>
+        </div>
+      </div>
+
+
+
+      <!--완료한 목록-->
+      <div class="todolist">
+        <h4>완료한 작업</h4>
+        <li>
+          <h2>호주에서 스카이다이빙 하기</h2>
+        </li>
+      </div>
+    </div>
+  </div>
 
 </body>
 
