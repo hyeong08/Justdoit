@@ -115,6 +115,20 @@
             margin-right: auto;
             margin-bottom: 0px;
         }
+        
+        .faile_todo>li>h4{
+            max-width: 75%;
+            font-size: 20px;
+            font-weight: 500;
+            margin-right: auto;
+        }
+
+        .faile_todo>li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
 
         .todolist>li>h2 {
             max-width: 100%;
@@ -147,21 +161,27 @@
             <div class="mybox" id="todo-list">
                 <li>
                     <h2>호주에서 스카이다이빙 하기</h2>
-                    <button onclick="success_todo()" type="button" class="btn btn-outline-primary">완료</button>
-                    <button onclick="success_todo()" type="button" class="btn btn-outline-primary">수정</button>
-                    <button onclick="success_todo()" type="button" class="btn btn-outline-primary">삭제</button>
+                    <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+                    <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
+                    <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
                 </li>
 
                 <br><br><br><br>
 
-                <div faile_todo>
+                <div class="faile_todo">
+                    <!--미완료 목록   =>  li 와 div가 한 세트-->
                     <li type="none">
-                        <h4>호주에서 스카이다이빙 하기</h4>
-                        <button onclick="success_todo()" type="button" class="btn btn-outline-primary">미완료</button>
-                        <input id="bucket" class="form-control" type="text" placeholder="미완료 사유" />
+                        <h4>호주에서</h4>
+                        <button onclick="failed_todo()" type="button" id="falied_button" class="btn btn-outline-primary">미완료</button>
                     </li>
+                    <div>
+                        <input id="failed_text" class="form-control" type="text" placeholder="미완료 사유" />
+                    </div>
                 </div>
             </div>
+
+
+
             <!--완료한 목록-->
             <div class="todolist">
                 <h4>완료한 작업</h4>
