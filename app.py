@@ -12,6 +12,7 @@ db = client.dbsparta
 def home():
     return render_template('index.html')
 
+# 저장
 @app.route("/todo", methods=["POST"])
 def todo_post():
     todo_receive = request.form['todo_give']
@@ -24,15 +25,24 @@ def todo_post():
         'done' : 0
     }
     db.todo.insert_one(doc)
-    return jsonify({'msg': '저장되었습니다.'})
+    return jsonify({'msg': '저장되었습니다!'})
 
+# 수정
 @app.route("/todo/update", methods=["POST"])
-def todo_done():
+def todo_update():
 	num_receive = int(request.form['num_give'])
 	todo_receive = request.form['todo_give']
 	
 	db.todo.update_one({'num':num_receive},{'$set':{'todo':todo_receive}})
-	return jsonify({'msg': '수정되었습니다.'})
+	return jsonify({'msg': '수정되었습니다!'})
+
+# 삭제
+@app.route("/todo/delete", methods=["POST"])
+def todo_delete():
+	num_receive = int(request.form['num_give'])
+	
+	db.todo.delete_one({'num':num_receive})
+	return jsonify({'msg': '삭제되었습니다!'})
 	
 @app.route("/todo", methods=["GET"])
 def todo_get():
