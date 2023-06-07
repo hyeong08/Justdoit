@@ -37,18 +37,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
+            margin-bottom: 10px;
         }
 
-        .center {
-            width: 95%;
-            max-width: 1000px;
+        .main {
+            width: 80%;
             height: 1000px;
-            padding: 20px;
+            margin: auto;
             box-shadow: 0px 0px 10px 0px gray;
-            margin: 20px auto;
+            padding: 20px 10px 10px 10px;
         }
 
-        .mytodosave {
+        .todo_list_save {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -56,139 +57,111 @@
             margin-bottom: 20px;
         }
 
-        .mytodosave>input {
-            width: 80%;
+        .todo_list_save>input {
+            width: 75%;
         }
 
-        .mytodosave>button {
-            width: 15%;
+        .todo_list_save>button {
+            width: 20%;
         }
-
-        .totalbox {
-            width: 100%;
-            height: 200px;
-
-            border-radius: 10px;
-
-            text-align: center;
-
-            padding: 30px 0px 0px 0px;
-
-            /*중앙을 보여줘라*/
-            background-position: center;
-            /*사이즈에 맞게 보여줘라*/
-            background-size: cover;
-        }
-
-        .mybox{
-            padding: 5px 10px 5px 10px;
-            box-shadow: 0px 0px 5px 0px gray;
-            margin-right: 5%;
+        /*진행중 작업 + 실패 작업의 가장 큰 틀*/
+        .todo_list {
+            padding: 10px;
             float: left;
             width: 60%;
+            margin-right: 5%;
+            background-color: olivedrab;
+            box-shadow: 0px 0px 10px 0px gray;
         }
 
-        .todolist{
-            padding: 5px 10px 5px 10px;
-            box-shadow: 0px 0px 5px 0px gray;
+        /*진행중 작업*/
+        .todo_list_detail {}
+
+        .todo_list_detail > li{
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .todo_list_detail >li> h4{
+            font-weight: 500;
+            margin-right: auto;
+        }
+
+        /*실패한 작업*/
+        .todo_list_failed {}
+
+        .todo_list_failed > li{
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .todo_list_failed > li > h5 {
+            font-weight: 500;
+            margin-right: auto;
+        }
+
+        .text_todo_failed {
+            display: block;
+        }
+
+        .todo_list_success {
+
+            padding: 10px;
             float: left;
             width: 35%;
-        }
-
-        .mybox>li {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .todolist>li{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mybox>li>h2 {
-            max-width: 75%;
-            font-size: 20px;
-            font-weight: 500;
-            margin-right: auto;
-            margin-bottom: 0px;
-        }
-        
-        .faile_todo>li>h4{
-            max-width: 75%;
-            font-size: 20px;
-            font-weight: 500;
-            margin-right: auto;
-        }
-
-        .faile_todo>li{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 5px;
-        }
-
-        .todolist>li>h2 {
-            max-width: 100%;
-            font-size: 20px;
-            margin-bottom: 0px;
+            background-color: pink;
+            box-shadow: 0px 0px 10px 0px gray;
         }
     </style>
 
-    <script>
-
-    </script>
 </head>
 
 <body>
-    <!-- 가장 상단 -->
-    <div class="top"><b>TO DO LIST</b></div>
+    <div class="top">
+        TO DO LIST
+    </div>
 
-    <!-- 중간 TodoList 가장 큰 틀 -->
-    <div class="center">
-
-        <!--할일 저장-->
-        <div class="mytodosave">
-            <input id="bucket" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
-            <button onclick="save_todo()" type="button" class="btn btn-outline-primary">입력</button>
+    <div class="main">
+        <div class="todo_list_save">
+            <input id="todo_save_text" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
+            <button onclick="save_todo()" type="button" id="button_todo_save"
+                class="btn btn-outline-primary">입력</button>
         </div>
 
-        <!--진행중+완료한 목록-->
-        <div class="totalbox">
-            <!--진행중 목록-->
-            <div class="mybox" id="todo-list">
-                <li>
-                    <h2>호주에서 스카이다이빙 하기</h2>
-                    <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-                    <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
-                    <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
-                </li>
-
-                <br><br><br><br>
-
-                <div class="faile_todo">
-                    <!--미완료 목록   =>  li 와 div가 한 세트-->
-                    <li type="none">
-                        <h4>호주에서</h4>
-                        <button onclick="failed_todo()" type="button" id="falied_button" class="btn btn-outline-primary">미완료</button>
-                    </li>
-                    <div>
-                        <input id="failed_text" class="form-control" type="text" placeholder="미완료 사유" />
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!--완료한 목록-->
-            <div class="todolist">
-                <h4>완료한 작업</h4>
-                <li>
-                    <h2>호주에서 스카이다이빙 하기</h2>
+        <div class="todo_list">
+            <div class="todo_list_detail">
+                <li type="none">
+                    <h4>호주에서</h4>
+                    <!--작업 완료시 => 완료된 작업으로 넘어가기-->
+                    <button onclick="success_todo()" type="button" id="success_button"
+                        class="btn btn-outline-primary">완료</button>
+                    <!--작업 수정시 => prompt로 받아서 수정해주기-->
+                    <button onclick="success_todo()" type="button" id="change_button"
+                        class="btn btn-outline-primary">수정</button>
+                    <!--작업 삭제시 => 작업 삭제-->
+                    <button onclick="success_todo()" type="button" id="success_button"
+                        class="btn btn-outline-primary">삭제</button>
                 </li>
             </div>
+            <hr>
+            <div class="todo_list_failed">
+                <li type="none">
+                    <h5>완료하지 못한 작업</h5>
+                    <button onclick="failed_todo()" type="button" id="button_todo_failed"
+                        class="btn btn-outline-primary">미완료</button>
+                </li>
+                <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+            </div>
+        </div>
+
+        <div class="todo_list_success">
+            <li>
+                완료한 작업들
+            </li>
         </div>
     </div>
 
