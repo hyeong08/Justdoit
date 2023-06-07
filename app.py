@@ -41,6 +41,14 @@ def todo_delete():
 	
 	db.todo.delete_one({'num':num_receive})
 	return jsonify({'msg': '삭제되었습니다!'})
+
+# 완료 
+@app.route("/todo/success", methods=["POST"])
+def todo_success():
+	num_receive = request.form['num_give']
+	db.todo.update_one({'num':num_receive},{'$set':{'done':1}})
+	return jsonify({'msg': 'DO 완료!'})
+
 	
 @app.route("/todo", methods=["GET"])
 def todo_get():
@@ -50,5 +58,3 @@ def todo_get():
 if __name__ == '__main__':
 		app.run('0.0.0.0', port=5000, debug=True)
 		
-# 코드 수정 테스트
-# 코드 수정 테스트2
