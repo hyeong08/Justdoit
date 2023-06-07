@@ -77,6 +77,10 @@
         /*진행중 작업*/
         .todo_list_detail {}
 
+        .todo_list_li{
+            margin-bottom: 5px;
+        }
+
         .todo_list_detail > li{
             
             display: flex;
@@ -116,6 +120,10 @@
             background-color: pink;
             box-shadow: 0px 0px 10px 0px gray;
         }
+
+        .success_list_li{
+            margin-bottom: 5px;
+        }
     </style>
 
 </head>
@@ -134,7 +142,7 @@
 
         <div class="todo_list">
             <div class="todo_list_detail">
-                <li type="none">
+                <li class ="todo_list_li" type="none">
                     <h4>호주에서</h4>
                     <!--작업 완료시 => 완료된 작업으로 넘어가기-->
                     <button onclick="success_todo()" type="button" id="success_button"
@@ -159,7 +167,7 @@
         </div>
 
         <div class="todo_list_success">
-            <li>
+            <li class="success_list_li">
                 완료한 작업들
             </li>
         </div>
