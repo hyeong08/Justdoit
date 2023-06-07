@@ -36,3 +36,5 @@ def bucket_get():
 
 if __name__ == '__main__':
 		app.run('0.0.0.0', port=5000, debug=True)
+		
+# 주석 코드 한 줄 추가했습니다. ( 이상한 )
