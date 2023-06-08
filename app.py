@@ -7,7 +7,8 @@ import certifi
 
 ca=certifi.where()
 
-client = MongoClient('mongodb+srv://sparta:test@cluster0.q8sdywu.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
+
+client = MongoClient('mongodb+srv://sparta:test@sparta.euiye0z.mongodb.net/?retryWrites=true&w=majority',tlsCAFile=ca)
 db = client.dbsparta
 
 # JWT 토큰을 만들 때 필요한 비밀문자열입니다. 아무거나 입력해도 괜찮습니다.
@@ -161,6 +162,15 @@ def todo_update():
     db.todo.update_one({'num':num_receive},{'$set':{'todo':todo_receive}})
     return jsonify({'msg': '수정되었습니다!'})
 
+
+# 완료 
+@app.route("/todo/success", methods=["POST"])
+def todo_success():
+	num_receive = request.form['num_give']
+	
+	db.todo.update_one({'num':int(num_receive)},{'$set':{'done':1}})
+	return jsonify({'msg': 'DO 완료!'})
+
 # 삭제
 @app.route("/todo/delete", methods=["POST"])
 def todo_delete():
@@ -171,8 +181,13 @@ def todo_delete():
     
 @app.route("/todo", methods=["GET"])
 def todo_get():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+
     all_todo = list(db.todo.find({},{'_id':False})) 
-    return jsonify({'result': all_todo})
+    
+    return jsonify({'result': all_todo, 'nickname':userinfo})
 
 if __name__ == '__main__':
         app.run('0.0.0.0', port=5000, debug=True)
