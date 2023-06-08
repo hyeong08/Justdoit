@@ -176,6 +176,17 @@
     .success_list_li {
       margin-bottom: 5px;
     }
+
+    /*로그아웃*/
+    .logout {
+      width: 80%;
+      height: 50px;
+      margin: auto;
+    }
+
+    .logout>button {
+      float: right;
+    }
   </style>
 
   <script type="text/javascript">
@@ -247,6 +258,9 @@
     function show_todo() {
       fetch('/todo').then(res => res.json()).then(data => {
         let rows = data['result']
+        let nickname = data['nickname']['nick']
+        console.log(nickname)
+        $('#user_logout').text(nickname + '님 로그아웃')
 
         $('.todo_list_detail').empty()
         rows.forEach((a) => {
@@ -273,6 +287,13 @@
         })
       })
     }
+
+    function logout() {
+
+      document.cookie = 'mytoken=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+      window.location.href = '/login'
+    }
+
     function success_show_todo() {
       fetch('/todo').then(res => res.json()).then(data => {
         let rows = data['result']
@@ -372,6 +393,7 @@
           window.location.reload();
         });
     }
+
   </script>
 </head>
 
@@ -379,7 +401,7 @@
   <div class="top">
     TO DO LIST
   </div>
-  
+
   <div class="wrapper">
     <div class="calendararea">
       <table border="3" align="center" id="Calendar">
@@ -411,6 +433,10 @@
       <div class="todo_list_save">
         <input id="todo_save_text" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
         <button onclick="save_todo()" type="button" id="button_todo_save" class="btn btn-outline-primary">입력</button>
+      </div>
+
+      <div class="logout">
+        <button onclick="logout()" type="button" id="user_logout" class="btn btn-outline-primary">[000님 로그아웃]</button>
       </div>
 
       <div class="todo_list">

@@ -7,6 +7,7 @@ import certifi
 
 ca=certifi.where()
 
+
 client = MongoClient('mongodb+srv://sparta:test@sparta.euiye0z.mongodb.net/?retryWrites=true&w=majority',tlsCAFile=ca)
 db = client.dbsparta
 
@@ -17,7 +18,7 @@ SECRET_KEY = 'SPARTA'
 # JWT 패키지를 사용합니다. (설치해야할 패키지 이름: PyJWT)
 import jwt
 
-# 토큰에 만료시간을 줘야하기 때문에, datetime 모듈도 사용합니다.
+# 토큰에 만료시간을 줘야하기 때문에, datetime 모듈도 사용합니`다.
 import datetime
 
 # 회원가입 시엔, 비밀번호를 암호화하여 DB에 저장해두는 게 좋습니다.
@@ -161,6 +162,7 @@ def todo_update():
     db.todo.update_one({'num':num_receive},{'$set':{'todo':todo_receive}})
     return jsonify({'msg': '수정되었습니다!'})
 
+
 # 완료 
 @app.route("/todo/success", methods=["POST"])
 def todo_success():
@@ -179,8 +181,13 @@ def todo_delete():
     
 @app.route("/todo", methods=["GET"])
 def todo_get():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+
     all_todo = list(db.todo.find({},{'_id':False})) 
-    return jsonify({'result': all_todo})
+    
+    return jsonify({'result': all_todo, 'nickname':userinfo})
 
 if __name__ == '__main__':
         app.run('0.0.0.0', port=5000, debug=True)
