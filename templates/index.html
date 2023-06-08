@@ -1,305 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>TodoList</title>
+    <meta property="og:title" content="항해99_TodoList" />
+    <meta property="og:description" content="할일 목록" />
+    <meta property="og:image" content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>TodoList</title>
+    <meta property="og:title" content="항해99_TodoList" />
+    <meta property="og:description" content="할일 목록" />
+    <meta property="og:image" content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75"/>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <title>TodoList</title>
-  <meta property="og:title" content="항해99_TodoList" />
-  <meta property="og:description" content="할일 목록" />
-  <meta property="og:image"
-    content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+        * {
+          font-family: 'Monomaniac One', sans-serif;
+        }
+        * {
+          font-family: 'Monomaniac One', sans-serif;
+        }
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+        button {
+          margin-left: 5px;
+        }
 
-    * {
-      font-family: 'Monomaniac One', sans-serif;
-    }
+        .top {
+          width: 100%;
+          height: 300px;
 
-    button {
-      margin-left: 5px;
-    }
+          background-color: coral;
+          background-position: center 50%;
+          background-size: cover;
+          background-color: coral;
+          background-position: center 50%;
+          background-size: cover;
 
-    .top {
-      width: 100%;
-      height: 300px;
+          color: white;
+          font-size: 80px;
+          font-style: normal;
+          color: white;
+          font-size: 80px;
+          font-style: normal;
 
-      background-color: coral;
-      background-position: center 50%;
-      background-size: cover;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
 
-      color: white;
-      font-size: 80px;
-      font-style: normal;
+          margin-bottom: 10px;
+        }
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+        .main {
+          width: 80%;
+          height: 1000px;
+          margin: auto;
+          box-shadow: 0px 0px 10px 0px gray;
+          padding: 20px 10px 10px 10px;
+        }
 
-      margin-bottom: 10px;
-    }
+        .todo_list_save {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 20px;
+        }
 
-    .main {
-      width: 80%;
-      height: 1000px;
-      margin: auto;
-      box-shadow: 0px 0px 10px 0px gray;
-      padding: 20px 10px 10px 10px;
-    }
+        .todo_list_save>input {
+          width: 75%;
+        }
 
-    .todo_list_save {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
+        .todo_list_save>button {
+          width: 20%;
+        }
 
-    .todo_list_save>input {
-      width: 75%;
-    }
+        /*진행중 작업 + 실패 작업의 가장 큰 틀*/
+        .todo_list {
+          padding: 10px;
+          float: left;
+          width: 60%;
+          margin-right: 5%;
+          background-color: cornflowerblue;
+          box-shadow: 0px 0px 10px 0px gray;
+        }
 
-    .todo_list_save>button {
-      width: 20%;
-    }
+        /*진행중 작업*/
+        /* .todo_list_detail {} */
 
-    /*진행중 작업 + 실패 작업의 가장 큰 틀*/
-    .todo_list {
-      padding: 10px;
-      float: left;
-      width: 60%;
-      margin-right: 5%;
-      background-color: cornflowerblue;
-      box-shadow: 0px 0px 10px 0px gray;
-    }
+        .todo_list_li {
+          margin-bottom: 5px;
+        }
 
-    /*진행중 작업*/
-    .todo_list_detail {}
+        .todo_list_detail>li {
 
-    .todo_list_li {
-      margin-bottom: 5px;
-    }
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
-    .todo_list_detail>li {
+        .todo_list_detail>li>h4 {
+          font-weight: 500;
+          margin-right: auto;
+        }
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        /*실패한 작업*/
+        /* .todo_list_failed {} */
 
-    .todo_list_detail>li>h4 {
-      font-weight: 500;
-      margin-right: auto;
-    }
+        .todo_list_failed>li {
+          margin-bottom: 5px;
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
-    /*실패한 작업*/
-    .todo_list_failed {}
+        .todo_list_failed>li>h5 {
+          font-weight: 500;
+          margin-right: auto;
+        }
 
-    .todo_list_failed>li {
-      margin-bottom: 5px;
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        .text_todo_failed {
+          display: block;
+        }
 
-    .todo_list_failed>li>h5 {
-      font-weight: 500;
-      margin-right: auto;
-    }
+        .todo_list_success {
 
-    .text_todo_failed {
-      display: block;
-    }
+          padding: 10px;
+          float: left;
+          width: 35%;
+          background-color: pink;
+          box-shadow: 0px 0px 10px 0px gray;
+        }
 
-    .todo_list_success {
+        .success_list_li {
+          margin-bottom: 5px;
+        }
+    </style>
 
-      padding: 10px;
-      float: left;
-      width: 35%;
-      background-color: pink;
-      box-shadow: 0px 0px 10px 0px gray;
-    }
+    <script>
+      $(document).ready(function () {
+        show_todo();
+      });
 
-    .success_list_li {
-      margin-bottom: 5px;
-    }
-  </style>
+      function show_todo() {
+        fetch('/todo').then(res => res.json()).then(data => {
+          let rows = data['result']
 
-  <script>
-    $(document).ready(function () {
-      show_todo();
-    });
+          $('.todo_list_detail').empty()
+            rows.forEach((a) => {
+              let todo = a['todo']
+              let num = a['num']
+              let done = a['done']
 
-    function show_todo() {
-      fetch('/todo').then(res => res.json()).then(data => {
-        let rows = data['result']
-
-        $('.todo_list_detail').empty()
-        rows.forEach((a) => {
-          let todo = a['todo']
-          let num = a['num']
-
-          let temp_html = ``
-          temp_html = `<li class="todo_list_li" type="none">
-                        <h4>${todo}</h4>
-                        <!--작업 완료시 => 완료된 작업으로 넘어가기-->
-                        <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-                        <!--작업 수정시 => prompt로 받아서 수정해주기-->
-                        <button onclick="update_todo(${a['num']})" type="button" id="update_button" class="btn btn-outline-primary">수정</button>
-                        <!--작업 삭제시 => 작업 삭제-->
-                        <button onclick="delete_todo(${a['num']})" type="button" id="delete_button" class="btn btn-outline-primary">삭제</button>
-                      </li>`
-          $('.todo_list_detail').append(temp_html)
+              
+              let temp_html = ``
+              if(done == 0){
+              temp_html = `<li class="todo_list_li" type="none">
+                            <h4>${todo}</h4>
+                            <!--작업 완료시 => 완료된 작업으로 넘어가기-->
+                            <button onclick="success_todo(${a['num']})" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+                            <!--작업 수정시 => prompt로 받아서 수정해주기-->
+                            <button onclick="update_todo(${a['num']})" type="button" id="update_button" class="btn btn-outline-primary">수정</button>
+                            <!--작업 삭제시 => 작업 삭제-->
+                            <button onclick="delete_todo(${a['num']})" type="button" id="delete_button" class="btn btn-outline-primary">삭제</button>
+                          </li>`
+              } else {
+                temp_html = ``
+              }
+              $('.todo_list_detail').append(temp_html)
+            })
         })
+      }
+			function success_show_todo() {
+        fetch('/todo').then(res => res.json()).then(data => {
+          let rows = data['result']
 
-      })
-    }
+          $('#success-list').empty()
+          rows.forEach((a) => {
+            let todo = a['todo']
+            let num = a['num']
+            let done = a['done']
 
-    // 저장
-    function save_todo() {
-      let todo = $('#todo_save_text').val()
-      if (todo == '') {
-        alert("해야 할 일을 입력해주세요!");
-        return;
+            let temp_html = ``
+            if(done ==1 ){
+              temp_html = `<li class="success_list_li">
+                            ${todo}
+                          </li>`
+            } else {
+              temp_html = ``
+            }
+            $('#success-list').append(temp_html)
+          })
+
+        })
       }
 
-      let formData = new FormData();
-      formData.append("todo_give", todo);
+      // 저장
+      function save_todo() {
+        let todo = $('#todo_save_text').val();
+        if (todo == '') {
+          alert('해야 할 일을 입력해주세요!');
+          return;
+        }
 
-      fetch('/todo', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
-        alert(data["msg"]);
-        window.location.reload();
-      });
-    }
+        let formData = new FormData();
+        formData.append('todo_give', todo);
 
-    // 수정
-    function update_todo(num) {
-      let todo = prompt()
+        fetch('/todo', { method: 'POST', body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data['msg']);
+            window.location.reload();
+          });
+      }
+			
 
-      if (todo == '') {
-        alert("해야 할 일을 입력해주세요!");
-        return;
-      } else if (todo == null) {
-        return;
+      // 수정
+      function update_todo(num) {
+        let todo = prompt();
+
+        if (todo == '') {
+          alert('해야 할 일을 입력해주세요!');
+          return;
+        } else if (todo == null) {
+          return;
+        }
+
+        let formData = new FormData();
+        formData.append('num_give', num);
+        formData.append('todo_give', todo);
+
+        fetch('/todo/update', { method: 'POST', body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data['msg']);
+            window.location.reload();
+          });
       }
 
-      let formData = new FormData();
-      formData.append("num_give", num);
-      formData.append("todo_give", todo);
+      // 삭제
+      function delete_todo(num) {
+        let del_yn = confirm('정말 삭제하시나요?');
 
-      fetch('/todo/update', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
-        alert(data["msg"]);
-        window.location.reload();
-      });
-    }
+        if (del_yn == false) {
+          return;
+        }
 
-    // 삭제
-    function delete_todo(num) {
-      let del_yn = confirm("정말 삭제하시나요?");
+        let formData = new FormData();
+        formData.append('num_give', num);
 
-      if (del_yn == false) {
-        return;
+        fetch('/todo/delete', { method: 'POST', body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data['msg']);
+            window.location.reload();
+          });
       }
 
-      let formData = new FormData();
-      formData.append("num_give", num);
+			// 완료 # 수정
+			function success_todo(num) {
+        
+        let formData = new FormData();
+        formData.append('num_give', num);
 
-      fetch('/todo/delete', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
-        alert(data["msg"]);
-        window.location.reload();
-      });
+        fetch('/todo/success', { method: 'POST', body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data['msg']);
+            window.location.reload();
+        });
+      }
+    </script>
+  </head>
 
-    }
-
-  </script>
-
-</head>
-
-<body>
-  <div class="top">
-    TO DO LIST
-  </div>
-
-  <div class="main">
-    <div class="todo_list_save">
-      <input id="todo_save_text" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
-      <button onclick="save_todo()" type="button" id="button_todo_save" class="btn btn-outline-primary">입력</button>
-    </div>
-
-    <div class="todo_list">
-      <div class="todo_list_detail">
-        <li class="todo_list_li" type="none">
-          <h4>호주에서</h4>
-          <!--작업 완료시 => 완료된 작업으로 넘어가기-->
-          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-          <!--작업 수정시 => prompt로 받아서 수정해주기-->
-          <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
-          <!--작업 삭제시 => 작업 삭제-->
-          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
-        </li>
-        <li class="todo_list_li" type="none">
-          <h4>호주에서</h4>
-          <!--작업 완료시 => 완료된 작업으로 넘어가기-->
-          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-          <!--작업 수정시 => prompt로 받아서 수정해주기-->
-          <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
-          <!--작업 삭제시 => 작업 삭제-->
-          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
-        </li>
-        <li class="todo_list_li" type="none">
-          <h4>호주에서</h4>
-          <!--작업 완료시 => 완료된 작업으로 넘어가기-->
-          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-          <!--작업 수정시 => prompt로 받아서 수정해주기-->
-          <button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
-          <!--작업 삭제시 => 작업 삭제-->
-          <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
-        </li>
-      </div>
-      <hr>
-      <div class="todo_list_failed">
-        <li type="none" class="failed_list_li">
-          <h5>완료하지 못한 작업</h5>
-          <button onclick="failed_todo()" type="button" id="button_todo_failed"
-            class="btn btn-outline-primary">미완료</button>
-        </li>
-        <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
-        <li type="none" class="failed_list_li">
-          <h5>완료하지 못한 작업</h5>
-          <button onclick="failed_todo()" type="button" id="button_todo_failed"
-            class="btn btn-outline-primary">미완료</button>
-        </li>
-        <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
-        <li type="none" class="failed_list_li">
-          <h5>완료하지 못한 작업</h5>
-          <button onclick="failed_todo()" type="button" id="button_todo_failed"
-            class="btn btn-outline-primary">미완료</button>
-        </li>
-        <input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
-
-      </div>
-    </div>
-
-    <div class="todo_list_success">
-      <li class="success_list_li">
-        완료한 작업들
-      </li>
-      <li class="success_list_li">
-        완료한 작업들
-      </li>
-      <li class="success_list_li">
-        완료한 작업들
-      </li>
-    </div>
-  </div>
-
-</body>
-
+	<body>
+		<div class="top">
+			TO DO LIST
+		</div>
+	
+		<div class="main">
+			<div class="todo_list_save">
+				<input id="todo_save_text" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
+				<button onclick="save_todo()" type="button" id="button_todo_save" class="btn btn-outline-primary">입력</button>
+			</div>
+	
+			<div class="todo_list">
+				<div class="todo_list_detail">
+					<li class="todo_list_li" type="none">
+						<h4>호주에서</h4>
+						<!--작업 완료시 => 완료된 작업으로 넘어가기-->
+						<button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+						<!--작업 수정시 => prompt로 받아서 수정해주기-->
+						<button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
+						<!--작업 삭제시 => 작업 삭제-->
+						<button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
+					</li>
+					<li class="todo_list_li" type="none">
+						<h4>호주에서</h4>
+						<!--작업 완료시 => 완료된 작업으로 넘어가기-->
+						<button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+						<!--작업 수정시 => prompt로 받아서 수정해주기-->
+						<button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
+						<!--작업 삭제시 => 작업 삭제-->
+						<button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
+					</li>
+					<li class="todo_list_li" type="none">
+						<h4>호주에서</h4>
+						<!--작업 완료시 => 완료된 작업으로 넘어가기-->
+						<button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+						<!--작업 수정시 => prompt로 받아서 수정해주기-->
+						<button onclick="success_todo()" type="button" id="change_button" class="btn btn-outline-primary">수정</button>
+						<!--작업 삭제시 => 작업 삭제-->
+						<button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">삭제</button>
+					</li>
+				</div>
+				<hr>
+				<div class="todo_list_failed">
+					<li type="none" class="failed_list_li">
+						<h5>완료하지 못한 작업</h5>
+						<button onclick="failed_todo()" type="button" id="button_todo_failed"
+							class="btn btn-outline-primary">미완료</button>
+					</li>
+					<input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+					<li type="none" class="failed_list_li">
+						<h5>완료하지 못한 작업</h5>
+						<button onclick="failed_todo()" type="button" id="button_todo_failed"
+							class="btn btn-outline-primary">미완료</button>
+					</li>
+					<input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+					<li type="none" class="failed_list_li">
+						<h5>완료하지 못한 작업</h5>
+						<button onclick="failed_todo()" type="button" id="button_todo_failed"
+							class="btn btn-outline-primary">미완료</button>
+					</li>
+					<input id="text_todo_failed" class="form-control" type="text" placeholder="미완료 사유" />
+				</div>
+			</div>
+			<div class="todo_list_success">
+				<li class="success_list_li">
+					완료한 작업들
+				</li>
+				<li class="success_list_li">
+					완료한 작업들
+				</li>
+				<li class="success_list_li">
+					완료한 작업들
+				</li>
+			</div>
+		</div>
+	</body>	
 </html>
