@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
@@ -46,7 +47,8 @@ def todo_delete():
 @app.route("/todo/success", methods=["POST"])
 def todo_success():
 	num_receive = request.form['num_give']
-	db.todo.update_one({'num':num_receive},{'$set':{'done':1}})
+	
+	db.todo.update_one({'num':int(num_receive)},{'$set':{'done':1}})
 	return jsonify({'msg': 'DO 완료!'})
 
 	

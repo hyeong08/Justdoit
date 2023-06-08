@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,7 +155,7 @@
                temp_html = `<li class="todo_list_li" type="none">
                             <h4>${todo}</h4>
                             <!--작업 완료시 => 완료된 작업으로 넘어가기-->
-                            <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+                            <button onclick="success_todo(${a['num']})" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
                             <!--작업 수정시 => prompt로 받아서 수정해주기-->
                             <button onclick="update_todo(${a['num']})" type="button" id="update_button" class="btn btn-outline-primary">수정</button>
                             <!--작업 삭제시 => 작업 삭제-->
@@ -173,7 +174,7 @@
         fetch('/todo').then(res => res.json()).then(data => {
           let rows = data['result']
 
-          $('.success-list').empty()
+          $('#success-list').empty()
           rows.forEach((a) => {
             let todo = a['todo']
             let num = a['num']
@@ -187,7 +188,7 @@
             } else {
               temp_html = ``
             }
-            $('.success-list').append(temp_html)
+            $('#success-list').append(temp_html)
           })
 
         })
@@ -259,6 +260,7 @@
           .then((response) => response.json())
           .then((data) => {
             alert(data['msg']);
+
             window.location.reload();
           });
       }
