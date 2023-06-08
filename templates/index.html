@@ -284,6 +284,7 @@
       fetch('/todo').then(res => res.json()).then(data => {
         let rows = data['result']
         let nickname = data['nickname']['nick']
+        let id = data['nickname']['id'] // 로그인한 유저 아이디
         console.log(nickname)
         $('#user_logout').text(nickname + '님 로그아웃')
 
@@ -292,9 +293,10 @@
           let todo = a['todo']
           let num = a['num']
           let done = a['done']
+          let user_id = a['user_id'] // 저장된 데이터에서 불러온 아이디
 
           let temp_html = ``
-          if (done == 0) {
+          if (id == user_id && done == 0) {
             temp_html = `<li class="todo_list_li" type="none">
                             <h4>${todo}</h4>
                             <!--작업 완료시 => 완료된 작업으로 넘어가기-->
@@ -321,15 +323,17 @@
     function success_show_todo() {
       fetch('/todo').then(res => res.json()).then(data => {
         let rows = data['result']
+        let id = data['nickname']['id'] // 로그인한 유저 아이디
 
         $('#success-list').empty()
         rows.forEach((a) => {
           let todo = a['todo']
           let num = a['num']
           let done = a['done']
+          let user_id = a['user_id'] // 저장된 데이터에서 불러온 아이디
 
           let temp_html = ``
-          if (done == 1) {
+          if (id == user_id && done == 1) {
             temp_html = `<li class="success_list_li">
                             ${todo}
                           </li>`

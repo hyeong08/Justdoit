@@ -143,8 +143,7 @@ def todo_post():
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
     userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
-
-    print(userinfo['id'])
+    user_id = userinfo['id']
 
     todo_receive = request.form['todo_give']
 
@@ -153,7 +152,8 @@ def todo_post():
     doc = {
         'num':count,
         'todo' :todo_receive,
-        'done' : 0
+        'done' : 0,
+        'user_id': user_id
     }
     db.todo.insert_one(doc)
     return jsonify({'msg': '저장되었습니다!'})
