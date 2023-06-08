@@ -69,7 +69,6 @@ def api_register():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive})
-
     return jsonify({'result': 'success'})
 
 
@@ -141,6 +140,12 @@ def todohome():
 # 저장
 @app.route("/todo", methods=["POST"])
 def todo_post():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+
+    print(userinfo['id'])
+
     todo_receive = request.form['todo_give']
 
     todo_list = list(db.todo.find({}, {'_id': False}))
