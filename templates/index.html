@@ -375,40 +375,40 @@
           window.location.reload();
         });
     }
-    
+
     function showLocation(event) {
-              var latitude = event.coords.latitude
-              var longitude = event.coords.longitude
+      var latitude = event.coords.latitude
+      var longitude = event.coords.longitude
 
-              let apiKey = "90f3165f37dd14780473e19a5044a630"
-              let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude
-                            + "&lon=" + longitude
-                            + "&appid=" + apiKey;
-             //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-                let options = { method: 'GET' }
-              $.ajax(weatherUrl, options).then((response) => {
-                  console.log(response)
-                  let icon = response.weather[0].icon
-                  let iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
-                  let img = document.querySelector("#wicon")
-                  let name01 = response.name
-                  img.src = iconUrl
-                  document.querySelector("#temp").textContent =  /*"(" +*/ Math.round((response.main.temp - 273)*10) / 10 +"°C"/*+ ")"*/ //+ (response.main.temp)+"°F"  화씨까지 띄우기  // 현재 온도
-                  document.querySelector("#name01").textContent = name01
-                }).catch((error) => {
-                  console.log(error)
-                })
-            }
-            //위치정보를 불러올수 없을때에 대한 예외처리
-            function showError(event) {
-              alert("위치 정보를 얻을 수 없습니다.")
-            }
+      let apiKey = "90f3165f37dd14780473e19a5044a630"
+      let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude
+        + "&lon=" + longitude
+        + "&appid=" + apiKey;
+      //api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+      let options = { method: 'GET' }
+      $.ajax(weatherUrl, options).then((response) => {
+        console.log(response)
+        let icon = response.weather[0].icon
+        let iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+        let img = document.querySelector("#wicon")
+        let name01 = response.name
+        img.src = iconUrl
+        document.querySelector("#temp").textContent =  /*"(" +*/ Math.round((response.main.temp - 273) * 10) / 10 + "°C"/*+ ")"*/ //+ (response.main.temp)+"°F"  화씨까지 띄우기  // 현재 온도
+        document.querySelector("#name01").textContent = name01
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    //위치정보를 불러올수 없을때에 대한 예외처리
+    function showError(event) {
+      alert("위치 정보를 얻을 수 없습니다.")
+    }
 
-            window.addEventListener('load', () => {
-              if(window.navigator.geolocation) {
-                window.navigator.geolocation.getCurrentPosition(showLocation,showError)
-              }
-            })
+    window.addEventListener('load', () => {
+      if (window.navigator.geolocation) {
+        window.navigator.geolocation.getCurrentPosition(showLocation, showError)
+      }
+    })
   </script>
 </head>
 
@@ -416,7 +416,7 @@
   <div class="top">
     TO DO LIST
     <div class="timenow">
-      <h5><span id="name01"></span>  <img id="wicon" src="">  <span id="temp"></span></h5>
+      <h5><span id="name01"></span> <img id="wicon" src=""> <span id="temp"></span></h5>
     </div>
   </div>
   <div class="wrapper">
@@ -505,4 +505,5 @@
     </div>
   </div>
 </body>
+
 </html>
