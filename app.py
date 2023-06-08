@@ -69,7 +69,6 @@ def api_register():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive})
-
     return jsonify({'result': 'success'})
 
 
