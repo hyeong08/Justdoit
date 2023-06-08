@@ -13,24 +13,9 @@
   <meta property="og:description" content="할일 목록" />
   <meta property="og:image"
     content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75" />
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <title>TodoList</title>
-  <meta property="og:title" content="항해99_TodoList" />
-  <meta property="og:description" content="할일 목록" />
-  <meta property="og:image"
-    content="https://hanghae99.spartacodingclub.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.6f8c4c39.png&w=1920&q=75" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
-
-    * {
-      font-family: 'Monomaniac One', sans-serif;
-    }
 
     * {
       font-family: 'Monomaniac One', sans-serif;
@@ -253,6 +238,7 @@
   <script>
     $(document).ready(function () {
       show_todo();
+      success_show_todo();
     });
 
     function show_todo() {
@@ -267,7 +253,6 @@
           let todo = a['todo']
           let num = a['num']
           let done = a['done']
-
 
           let temp_html = ``
           if (done == 0) {
@@ -337,11 +322,9 @@
         });
     }
 
-
     // 수정
     function update_todo(num) {
       let todo = prompt();
-
       if (todo == '') {
         alert('해야 할 일을 입력해주세요!');
         return;
@@ -382,7 +365,6 @@
 
     // 완료 # 수정
     function success_todo(num) {
-
       let formData = new FormData();
       formData.append('num_give', num);
 
@@ -424,10 +406,9 @@
 
             window.addEventListener('load', () => {
               if(window.navigator.geolocation) {
-                 window.navigator.geolocation.getCurrentPosition(showLocation,showError)
+                window.navigator.geolocation.getCurrentPosition(showLocation,showError)
               }
             })
-
   </script>
 </head>
 
@@ -438,14 +419,12 @@
       <h5><span id="name01"></span>  <img id="wicon" src="">  <span id="temp"></span></h5>
     </div>
   </div>
-
   <div class="wrapper">
     <div class="calendararea">
       <table border="3" align="center" id="Calendar">
         <tr>
           <td align="center" id="CalendarYM" colspan="7"> 날짜 입력 공간 </td>
         </tr>
-
         <tr>
           <td align="center">
             <font color="#F79DC2"> 일 </font>
@@ -460,22 +439,18 @@
           </td>
         </tr>
       </table>
-
       <script language="javascript" type="text/javascript">
         Calendar();
       </script>
     </div>
-
     <div class="main">
       <div class="todo_list_save">
         <input id="todo_save_text" class="form-control" type="text" placeholder="내가 해야 할 일!!!" />
         <button onclick="save_todo()" type="button" id="button_todo_save" class="btn btn-outline-primary">입력</button>
       </div>
-
       <div class="logout">
         <button onclick="logout()" type="button" id="user_logout" class="btn btn-outline-primary">[000님 로그아웃]</button>
       </div>
-
       <div class="todo_list">
         <div class="todo_list_detail">
           <li class="todo_list_li" type="none">
@@ -516,7 +491,7 @@
           </li>
         </div>
       </div>
-      <div class="todo_list_success">
+      <div class="todo_list_success" id="success-list">
         <li class="success_list_li">
           완료한 작업들
         </li>
@@ -530,5 +505,4 @@
     </div>
   </div>
 </body>
-
 </html>
