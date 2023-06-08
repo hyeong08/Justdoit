@@ -161,6 +161,14 @@ def todo_update():
     db.todo.update_one({'num':num_receive},{'$set':{'todo':todo_receive}})
     return jsonify({'msg': '수정되었습니다!'})
 
+# 완료 
+@app.route("/todo/success", methods=["POST"])
+def todo_success():
+	num_receive = request.form['num_give']
+	
+	db.todo.update_one({'num':int(num_receive)},{'$set':{'done':1}})
+	return jsonify({'msg': 'DO 완료!'})
+
 # 삭제
 @app.route("/todo/delete", methods=["POST"])
 def todo_delete():

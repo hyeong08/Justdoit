@@ -152,29 +152,56 @@
       });
 
       function show_todo() {
-        fetch('/todo')
-          .then((res) => res.json())
-          .then((data) => {
-            let rows = data['result'];
+        fetch('/todo').then(res => res.json()).then(data => {
+          let rows = data['result']
 
-            $('.todo_list_detail').empty();
+          $('.todo_list_detail').empty()
             rows.forEach((a) => {
-              let todo = a['todo'];
-              let num = a['num'];
+              let todo = a['todo']
+              let num = a['num']
+              let done = a['done']
 
-              let temp_html = ``;
+              
+              let temp_html = ``
+              if(done == 0){
               temp_html = `<li class="todo_list_li" type="none">
-                        <h4>${todo}</h4>
-                        <!--작업 완료시 => 완료된 작업으로 넘어가기-->
-                        <button onclick="success_todo()" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
-                        <!--작업 수정시 => prompt로 받아서 수정해주기-->
-                        <button onclick="update_todo(${a['num']})" type="button" id="update_button" class="btn btn-outline-primary">수정</button>
-                        <!--작업 삭제시 => 작업 삭제-->
-                        <button onclick="delete_todo(${a['num']})" type="button" id="delete_button" class="btn btn-outline-primary">삭제</button>
-                      </li>`;
-              $('.todo_list_detail').append(temp_html);
-            });
-          });
+                            <h4>${todo}</h4>
+                            <!--작업 완료시 => 완료된 작업으로 넘어가기-->
+                            <button onclick="success_todo(${a['num']})" type="button" id="success_button" class="btn btn-outline-primary">완료</button>
+                            <!--작업 수정시 => prompt로 받아서 수정해주기-->
+                            <button onclick="update_todo(${a['num']})" type="button" id="update_button" class="btn btn-outline-primary">수정</button>
+                            <!--작업 삭제시 => 작업 삭제-->
+                            <button onclick="delete_todo(${a['num']})" type="button" id="delete_button" class="btn btn-outline-primary">삭제</button>
+                          </li>`
+              } else {
+                temp_html = ``
+              }
+              $('.todo_list_detail').append(temp_html)
+            })
+        })
+      }
+			function success_show_todo() {
+        fetch('/todo').then(res => res.json()).then(data => {
+          let rows = data['result']
+
+          $('#success-list').empty()
+          rows.forEach((a) => {
+            let todo = a['todo']
+            let num = a['num']
+            let done = a['done']
+
+            let temp_html = ``
+            if(done ==1 ){
+              temp_html = `<li class="success_list_li">
+                            ${todo}
+                          </li>`
+            } else {
+              temp_html = ``
+            }
+            $('#success-list').append(temp_html)
+          })
+
+        })
       }
 
       // 저장
@@ -195,6 +222,7 @@
             window.location.reload();
           });
       }
+			
 
       // 수정
       function update_todo(num) {
@@ -236,6 +264,20 @@
             alert(data['msg']);
             window.location.reload();
           });
+      }
+
+			// 완료 # 수정
+			function success_todo(num) {
+        
+        let formData = new FormData();
+        formData.append('num_give', num);
+
+        fetch('/todo/success', { method: 'POST', body: formData })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data['msg']);
+            window.location.reload();
+        });
       }
     </script>
   </head>
